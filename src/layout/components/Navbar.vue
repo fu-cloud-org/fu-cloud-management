@@ -7,7 +7,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img :src="'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fzhengxin-pub.cdn.bcebos.com%2Fmark%2F337176f06a5118eb023f2eb9bff66131.jpg&refer=http%3A%2F%2Fzhengxin-pub.cdn.bcebos.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671352806&t=fcb8f17866519bca4d371e362052925c'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">

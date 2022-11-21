@@ -12,8 +12,8 @@ const name = defaultSettings.title || 'vue Admin Template' // page title
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
 // You can change the port by the following methods:
-// port = 9528 npm run dev OR npm run dev --port = 9528
-const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+// port = 9999 npm run dev OR npm run dev --port = 9999
+const port = process.env.port || process.env.npm_config_port || 9999 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -36,8 +36,20 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    before: require('./mock/mock-server.js') //正式使用注释这一行
   },
+/*   host:'0.0.0.0',
+  porxy:{  //代理
+    'api':{
+      target:'http://localhost:8888', //后台端口地址
+      changerOrigin:ture,
+      ws:false, //是否代理websockets
+      secure:false  //如果是https接口，需要配置这个参数
+      // pathRewrite:{
+      //   '^/api':'' // 如果需要去掉api加这个 
+      //  },
+    }
+  }, */
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
