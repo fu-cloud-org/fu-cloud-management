@@ -1,7 +1,7 @@
 <template>
   <section>
-    <div>
-      <el-card>
+    <div class="elheight">
+      <el-card class="elheight">
         <el-table
           :data="
             tableData.slice(
@@ -42,19 +42,21 @@
         </el-table>
       </el-card>
     </div>
-    <el-card class="pag">
-      <el-pagination
-        background
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[8, 10, 16]"
-        :page-size="pageSize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-      >
-      </el-pagination>
-    </el-card>
+    <div>
+      <el-card class="pag">
+        <el-pagination
+          background
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[8, 10, 16]"
+          :page-size="pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total"
+        >
+        </el-pagination>
+      </el-card>
+    </div>
   </section>
 </template>
 
@@ -62,6 +64,11 @@
 .pag {
   text-align: right;
   line-height: 35px;
+  height: 100%;
+}
+.elheight {
+  min-height: 100%;
+  height: 100%;
 }
 </style>
 
