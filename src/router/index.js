@@ -55,6 +55,18 @@ export const constantRoutes = [
         //icon：图标
       },
     ],
+
+    path: "/",
+    component: Layout, //src/views/
+    children: [
+      {
+        path: "home/index",
+        name: "home",
+        component: () => import("@/views/dashboard/index"),
+        meta: { title: "首页", icon: "el-icon-s-home" },
+        //icon：图标
+      },
+    ],
   },
 
   {
@@ -283,7 +295,6 @@ const createRouter = () =>
 
 const router = createRouter();
 
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter();
   router.matcher = newRouter.matcher; // reset router
