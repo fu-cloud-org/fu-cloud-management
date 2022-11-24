@@ -12,21 +12,30 @@
             v-model="editTitle" 
             placeholder="Edit Title" 
             v-if="isEdit && currentRowTitle===scope.row.title" />
-            <span v-else>{{scope.row.title}}</span>
+            <span v-else><el-link type="success" :href="scope.row.link" :underline="false" target="_blank">{{scope.row.title}}</el-link></span>
         </template>
       </el-table-column>
-      <el-table-column label="Link" width="250" :show-overflow-tooltip="true">
+      <el-table-column width="250" :show-overflow-tooltip="true">
+        <template #header>
+            <span class="el-icon-paperclip" style="margin-right:5px"></span><span>{{"Link"}}</span>
+        </template>
         <template #default="scope">
             <el-input 
             v-model="editLink" 
             placeholder="Edit Link" 
             v-if="isEdit && currentRowTitle===scope.row.title" />
-            <span v-else>{{scope.row.link}}</span>
+            <span v-else><el-link type="primary" :href="scope.row.link" :underline="false" target="_blank">{{scope.row.link}}</el-link></span>
         </template>
       </el-table-column>
       <el-table-column align="right">
         <template #header>
-            <el-input v-model="search" size="large" placeholder="Type to search" />
+            <el-input 
+            v-model="search" 
+            size="large" 
+            placeholder="Search for Title"
+            prefix-icon="el-icon-search"
+            clearable 
+            />
         </template>
         <template #default="scope">
             <el-button 
@@ -36,19 +45,30 @@
             @click="handConfirm(scope.$index, scope.row)">
                 Confirm
             </el-button>
+
             <el-button 
-            v-show="!(isEdit && currentRowTitle===scope.row.title)" 
+            v-if="isEdit && currentRowTitle===scope.row.title" 
+            type="info" 
+            size="small" 
+            @click="isEdit=false">
+                Cancel
+            </el-button>
+
+            <el-button 
+            v-if="!(isEdit && currentRowTitle===scope.row.title)" 
             size="small" 
             @click="handleEdit(scope.$index, scope.row)"
             >Edit
             </el-button>
+
             <el-button
-            v-show="!(isEdit && currentRowTitle===scope.row.title)" 
+            v-if="!(isEdit && currentRowTitle===scope.row.title)" 
             size="small"
             type="danger"
             @click="handleDelete(scope.$index, scope.row)"
             >Delete
             </el-button>
+
         </template>
       </el-table-column>
     </el-table>
@@ -60,7 +80,7 @@
     :before-close="handDialogCancel"
     >
     <template #title>
-        <span class="el-icon-plus">添加</span>
+        <span class="el-icon-circle-plus">添加</span>
     </template>
     <template #default>
         <el-form :model="form" label-width="50px">
@@ -98,7 +118,7 @@
         tableData:[
     {
       title: 'asd',
-      link: '#12333333333333333333333333',
+      link: 'https://www.baidu.com',
       
     },
     {
@@ -121,7 +141,6 @@
     },
     methods:{
         handleEdit(index,row){
-            console.log(index, row.link)
             this.isEdit=true
             this.currentRowTitle=row.title
         },
@@ -130,11 +149,47 @@
             this.tableData = this.tableData.filter((item)=>{
                 return item.title !== row.title
             })
+            this.$message({
+                message:"delete success",
+                type:"success",
+                showClose:true,
+                duration:1500
+            })
         },
         handConfirm(index,row){
-            this.isEdit = false;
-            row.title = this.editTitle;
-            row.link = this.editLink;
+            if(this.editTitle===""||this.editLink===""){
+                this.$message({
+                    message:"Title/Link can not be empty!!",
+                    type:"error",
+                    showClose:true,
+                    duration:1500
+                })
+            }
+            else if(this.tableData.filter((item)=>{
+              return item.title ===  this.editTitle || item.link=== this.editLink
+            }).length>0){
+                this.$message({
+                    message:"invalid input",
+                    type:"error",
+                    showClose:true,
+                    duration: 1500,
+                })
+                this.editTitle=""
+                this.editLink=""
+            }
+            else{
+                this.isEdit = false;
+                row.title = this.editTitle;
+                row.link = this.editLink;
+                this.editTitle=""
+                this.editLink=""
+                this.$message({
+                    type:"success",
+                    message:"Modify success",
+                    showClose:true,
+                    duration: 1500,
+                 })
+            }
         },
         handAddItem(){
             this.isShow = true;
@@ -152,12 +207,41 @@
                     showClose:true,
                     duration: 1500,
                 })
+                this.form = { title:"",link:""}
+            }
+            else if(this.form.link==="" || this.form.title===""){
+                this.$message({
+                    message:"Title/Link can not be empty!!",
+                    type:"error",
+                    showClose:true,
+                    duration:1500
+                })
             }
             else{
-                this.tableData.push({title:this.form.title,link:this.form.link})
-                this.isShow = false
+                this.$confirm("确认添加？","Tip",{
+                    confirmButtonText:"确认",
+                    cancelButtonText:"取消",
+                    type:"info"
+                }).then(()=>{
+                    this.tableData.push({title:this.form.title,link:this.form.link})
+                    this.isShow = false
+                    this.$message({
+                        type:"success",
+                        message:"添加成功",
+                        showClose:true,
+                        duration: 1500,
+                    })
+                    this.form = { title:"",link:""}
+                }).catch(()=>{
+                    this.$message({
+                        type:"info",
+                        message:"已取消操作",
+                        showClose:true,
+                        duration: 1500,
+                    })
+                    this.form = { title:"",link:""}
+                })
             }
-            this.form = { title:"",link:""}
         }
         
     },
