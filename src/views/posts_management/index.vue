@@ -65,7 +65,7 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-edit"
+            icon="el-icon-view"
             v-hasPermi="['system:config:edit']"
             >查看</el-button
           >
@@ -80,7 +80,7 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-edit"
+            icon="el-icon-star-off"
             v-hasPermi="['system:config:edit']"
             >加精</el-button
           >

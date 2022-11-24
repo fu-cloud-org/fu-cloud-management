@@ -35,7 +35,7 @@ export default {
       const first = matched[0]
 
       if (!this.isDashboard(first)) {//logo:require('../../image/logo_fu-cloud.png')
-        matched = [{ path: '/home', meta: { title: 'fu-cloud' }}].concat(matched)
+        matched = [{ path: '/home/index', meta: { title: 'fu-cloud' }}].concat(matched)
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
