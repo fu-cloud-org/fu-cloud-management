@@ -6,7 +6,7 @@
     style="width:100%;border-radius: 12px"
     :default-sort="{prop:'title',order:'descending'}"
     >
-      <el-table-column  label="Title" width="250" sortable>
+      <el-table-column width="250" sortable label="Title">
         <template #default="scope">
             <el-input 
             v-model="editTitle" 
