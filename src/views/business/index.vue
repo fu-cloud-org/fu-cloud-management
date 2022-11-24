@@ -8,13 +8,19 @@
     >
       <el-table-column  label="Title" width="250" sortable>
         <template #default="scope">
-            <el-input v-model="editTitle" placeholder="Edit Title" v-if="isEdit" />
+            <el-input 
+            v-model="editTitle" 
+            placeholder="Edit Title" 
+            v-if="isEdit && currentRowTitle===scope.row.title" />
             <span v-else>{{scope.row.title}}</span>
         </template>
       </el-table-column>
       <el-table-column label="Link" width="250" :show-overflow-tooltip="true">
         <template #default="scope">
-            <el-input v-model="editLink" placeholder="Edit Link" v-if="isEdit" />
+            <el-input 
+            v-model="editLink" 
+            placeholder="Edit Link" 
+            v-if="isEdit && currentRowTitle===scope.row.title" />
             <span v-else>{{scope.row.link}}</span>
         </template>
       </el-table-column>
@@ -23,18 +29,25 @@
             <el-input v-model="search" size="large" placeholder="Type to search" />
         </template>
         <template #default="scope">
-            <el-button v-if="isEdit" size="small" @click="handConfirm">
+            <el-button 
+            v-if="isEdit && currentRowTitle===scope.row.title" 
+            type="primary" 
+            size="small" 
+            @click="handConfirm(scope.$index, scope.row)">
                 Confirm
             </el-button>
-            <el-button v-show="!isEdit" size="small" @click="handleEdit(scope.$index, scope.row)"> 
-                Edit
+            <el-button 
+            v-show="!(isEdit && currentRowTitle===scope.row.title)" 
+            size="small" 
+            @click="handleEdit(scope.$index, scope.row)"
+            >Edit
             </el-button>
             <el-button
-                v-show="!isEdit"
-                size="small"
-                type="danger"
-                @click="handleDelete(scope.$index, scope.row)"
-                >Delete
+            v-show="!(isEdit && currentRowTitle===scope.row.title)" 
+            size="small"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)"
+            >Delete
             </el-button>
         </template>
       </el-table-column>
@@ -72,6 +85,7 @@
   export default{
     data(){
        return {
+        currentRowTitle:"",
         editTitle:"",
         editLink:"",
         isEdit:false,
@@ -109,6 +123,7 @@
         handleEdit(index,row){
             console.log(index, row.link)
             this.isEdit=true
+            this.currentRowTitle=row.title
         },
         handleDelete(index,row){
             console.log(index, row)
@@ -116,8 +131,10 @@
                 return item.title !== row.title
             })
         },
-        handConfirm(){
+        handConfirm(index,row){
             this.isEdit = false;
+            row.title = this.editTitle;
+            row.link = this.editLink;
         },
         handAddItem(){
             this.isShow = true;
