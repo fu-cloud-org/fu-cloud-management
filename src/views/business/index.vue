@@ -1,7 +1,7 @@
 <template>
     <div style="width: 80%;margin:auto;">
     <el-table 
-    :data="filterTableData" 
+    :data="filterTableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" 
     stripe 
     style="width:100%;border-radius: 12px"
     :default-sort="{prop:'title',order:'descending'}"
@@ -12,7 +12,7 @@
             v-model="editTitle" 
             placeholder="Edit Title" 
             v-if="isEdit && currentRowTitle===scope.row.title" />
-            <span v-else><el-link type="success" :href="scope.row.link" :underline="false" target="_blank">{{scope.row.title}}</el-link></span>
+            <span v-else><el-tag type="success"><el-link type="success" :href="scope.row.link" :underline="false" target="_blank">{{scope.row.title}}</el-link></el-tag></span>
         </template>
       </el-table-column>
       <el-table-column width="250" :show-overflow-tooltip="true">
@@ -24,7 +24,7 @@
             v-model="editLink" 
             placeholder="Edit Link" 
             v-if="isEdit && currentRowTitle===scope.row.title" />
-            <span v-else><el-link type="primary" :href="scope.row.link" :underline="false" target="_blank">{{scope.row.link}}</el-link></span>
+            <span v-else><el-tag type="primary"><el-link type="primary" :href="scope.row.link" :underline="false" target="_blank">{{scope.row.link}}</el-link></el-tag></span>
         </template>
       </el-table-column>
       <el-table-column align="right">
@@ -72,6 +72,21 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-row style="margin-top:25px;margin-bottom:10px">
+        <el-col :span="12" :offset="12">
+            <el-pagination
+            style="width:100%"
+            :current-page="currentPage"
+            :page-size="pageSize"
+            :page-sizes="[7,10,15,30,60]"
+            :total="filterTableDataLength"
+            layout="total,sizes,prev,pager,next,jumper"
+            @current-change="handCurrentPageChange"
+            @size-change="handPageSizeChange"
+            >
+        </el-pagination>
+        </el-col>
+    </el-row>
     <el-button  style="width:100%" @click="handAddItem" type="success">Add Item</el-button>
     <el-dialog
     :visible.sync="isShow"
@@ -96,8 +111,7 @@
         <el-button type="success" @click="handDialogConfirm">确 定</el-button>
         <el-button type="primary" @click="handDialogCancel">取 消</el-button>
     </template>
-
-</el-dialog>
+    </el-dialog>
     </div>
   </template>
   
@@ -105,6 +119,8 @@
   export default{
     data(){
        return {
+        currentPage:1,
+        pageSize:7,
         currentRowTitle:"",
         editTitle:"",
         editLink:"",
@@ -116,28 +132,68 @@
         isShow:false,
         search:'',
         tableData:[
-    {
-      title: 'asd',
-      link: 'https://www.baidu.com',
+            {
+                title: 'asd',
+                link: 'https://www.baidu.com',
       
-    },
-    {
-        title: 'github',
-        link: '#456555555555555555555555555555',
+            },
+            {
+                title: 'github',
+                link: '#456555555555555555555555555555',
       
-    },
-    {
-        title: 'csdn',
-        link: '#7897777777777777777777777',
+            },
+            {
+                title: 'csdn',
+                link: '#7897777777777777777777777',
     
-    } ,
-    {
-        title: 'df',
-        link: '#444999999999999999999999999999',
+            },
+            {
+                title: 'df',
+                link: '#444999999999999999999999999999',
       
-    },
-  ]
-       }
+            },
+            {
+                title:'qqq',
+                link:'#111',
+            },
+            {
+                title:'www',
+                link:'#111',
+            },
+            {
+                title:'eee',
+                link:'#111',
+            },
+            {
+                title:'rrr',
+                link:'#111',
+            },
+            {
+                title:'ttt',
+                link:'#111',
+            },
+            {
+                title:'yyy',
+                link:'#111',
+            },
+            {
+                title:'uuu',
+                link:'#111',
+            },
+            {
+                title:'iii',
+                link:'#111',
+            },
+            {
+                title:'ooo',
+                link:'#111',
+            },
+            {
+                title:'ppp',
+                link:'#111',
+            },
+        ]
+        }
     },
     methods:{
         handleEdit(index,row){
@@ -196,6 +252,7 @@
         },
         handDialogCancel(){
             this.isShow = false;
+            this.form = {title:"",link:""}
         },
         handDialogConfirm(){
             if(this.tableData.filter((item)=>{
@@ -242,13 +299,27 @@
                     this.form = { title:"",link:""}
                 })
             }
+        },
+        handCurrentPageChange(val){
+            this.currentPage=val
+        },
+        handPageSizeChange(val){
+            this.pageSize=val;
+            this.currentPage=1;
         }
-        
     },
     computed:{
         filterTableData(){
             return this.tableData.filter((data) =>
                 !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()))
+        },
+        filterTableDataLength(){
+            return this.filterTableData.length
+        }
+    },
+    watch:{
+        search(){
+            this.currentPage=1;
         }
     }
   }
