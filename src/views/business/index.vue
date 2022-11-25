@@ -1,10 +1,12 @@
 <template>
     <div style="width: 80%;margin:auto;">
+    <!--表格-->
     <el-table 
     :data="filterTableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" 
     stripe 
     style="width:100%;border-radius: 12px"
-    :default-sort="{prop:'title',order:'descending'}"
+    highlight-current-row
+    @sort-change="tableSortChange"
     >
       <el-table-column width="250" sortable label="Title">
         <template #default="scope">
@@ -78,6 +80,7 @@
         </template>
       </el-table-column>
     </el-table>
+    <!--分页组件-->
     <el-row style="margin-top:25px;margin-bottom:10px">
         <el-col :span="12" :offset="12">
             <el-pagination
@@ -93,7 +96,9 @@
         </el-pagination>
         </el-col>
     </el-row>
+    <!--添加按钮-->
     <el-button  style="width:100%" @click="handAddItem" type="success">Add Item</el-button>
+    <!--添加按钮对话框-->
     <el-dialog
     :visible.sync="isShow"
     width="40%"
@@ -125,6 +130,7 @@
   export default{
     data(){
        return {
+        currentTableSort:"descending",
         currentPage:1,
         pageSize:7,
         currentRowTitle:"",
@@ -312,12 +318,28 @@
         handPageSizeChange(val){
             this.pageSize=val;
             this.currentPage=1;
+        },
+        tableSortChange(column,prop,order){
+            this.currentTableSort  =  column.order
+            console.log(this.currentTableSort)
         }
     },
     computed:{
         filterTableData(){
-            return this.tableData.filter((data) =>
+            const tempfilterdata = this.tableData.filter((data) =>
                 !this.search || data.title.toLowerCase().includes(this.search.toLowerCase()))
+            
+            if(this.currentTableSort==="ascending"){
+                return tempfilterdata.sort((a,b)=>{
+                    return a.title.localeCompare(b.title)
+                })
+            }
+            else{
+                console.log('xxx')
+                return tempfilterdata.sort((a,b)=>{
+                    return a.title.localeCompare(b.title)
+                }).reverse()
+            }
         },
         filterTableDataLength(){
             return this.filterTableData.length
