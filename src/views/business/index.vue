@@ -8,10 +8,14 @@
     >
       <el-table-column width="250" sortable label="Title">
         <template #default="scope">
-            <el-input 
+            <el-input
             v-model="editTitle" 
             placeholder="Edit Title" 
-            v-if="isEdit && currentRowTitle===scope.row.title" />
+            v-if="isEdit && currentRowTitle===scope.row.title"
+            clearable
+            autofocus
+            v-myfocus
+            />
             <span v-else><el-tag type="success"><el-link type="success" :href="scope.row.link" :underline="false" target="_blank">{{scope.row.title}}</el-link></el-tag></span>
         </template>
       </el-table-column>
@@ -23,7 +27,9 @@
             <el-input 
             v-model="editLink" 
             placeholder="Edit Link" 
-            v-if="isEdit && currentRowTitle===scope.row.title" />
+            v-if="isEdit && currentRowTitle===scope.row.title"
+            clearable
+            prefix-icon="el-icon-paperclip" />
             <span v-else><el-tag type="primary"><el-link type="primary" :href="scope.row.link" :underline="false" target="_blank">{{scope.row.link}}</el-link></el-tag></span>
         </template>
       </el-table-column>
@@ -315,11 +321,21 @@
         },
         filterTableDataLength(){
             return this.filterTableData.length
-        }
+        },
     },
     watch:{
         search(){
             this.currentPage=1;
+        },
+        isEdit(newvalue){
+            
+        }
+    },
+    directives:{
+        myfocus:{
+            inserted(el){
+                el.querySelector("input").focus();
+            }
         }
     }
   }
