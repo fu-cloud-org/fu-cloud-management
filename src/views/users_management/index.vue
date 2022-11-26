@@ -69,12 +69,12 @@
       <el-table-column
         fixed
         prop="number"
-        label="员工编号"
+        label="索引"
         width="150">
       </el-table-column>
       <el-table-column
         prop="name"
-        label="员工姓名"
+        label="昵称"
         width="120">
       </el-table-column>
       <el-table-column
@@ -84,12 +84,12 @@
       </el-table-column>
       <el-table-column
         prop="date"
-        label="出生日期"
+        label="用户名"
         width="120">
       </el-table-column>
       <el-table-column
         prop="idnumber"
-        label="身份证号"
+        label="密码"
         width="300">
       </el-table-column>
       <el-table-column
