@@ -1,4 +1,3 @@
-// 源码（版权所有）：
 <template>
   <div class="personalCenter">
     <el-container>
@@ -16,7 +15,7 @@
                 ></el-avatar>
               </div>
               <div class="block">
-                <span>ADMIN</span>
+                <span>Fucloud</span>
               </div>
             </div>
           </el-col>
@@ -44,45 +43,18 @@
             placeholder="请输入密码"
             show-password
           ></el-input>
-          <!-- <el-input
-            v-model="input5"
-            type="text"
-            placeholder="用户姓名"
-            show-word-limit
-          ></el-input> -->
-          <!-- <el-input
-            v-model="input6"
-            type="text"
-            placeholder="用户权限"
-            maxlength="2"
-            show-word-limit
-          ></el-input> -->
           <el-input v-model="input5" placeholder="邮箱">
             <template slot="append">@fzu.com</template>
           </el-input>
-          <!-- <el-input
-            v-model="input8"
-            type="text"
-            placeholder="手机号码"
-            maxlength="20"
-            show-word-limit
-          ></el-input>
-          <el-input
-            v-model="input9"
-            type="text"
-            placeholder="固定电话"
-            maxlength="20"
-            show-word-limit
-          ></el-input> -->
           <el-button-group style="float: right; padding: 3px 0" type="text">
             <el-button type="primary" size="medium" round>保存</el-button>
           </el-button-group>
         </el-aside>
         <el-container>
-          <el-main>
-            <el-card class="box-card">
+          <!-- <el-main> -->
+            <!-- <el-card class="box-card">
               <div slot="header" class="clearfix">
-                <span style="float: left"><b>账号绑定</b></span>
+                <span style="float: left"><b>绑定信息</b></span>
                 <el-button-group
                   style="float: right; padding: 3px 0"
                   type="text"
@@ -197,8 +169,8 @@
                   </el-table-column>
                 </el-table>
               </div>
-            </el-card>
-            <el-card class="box-card">
+            </el-card> -->
+            <!-- <el-card class="box-card">
               <div>
                 <span style="float: left" shadow="hover"><b>个人说明</b></span>
                 <br />
@@ -206,11 +178,9 @@
                 <span>嗨嗨嗨我很正常</span>
                 <el-divider></el-divider>
                 <span>大学生哪有不发疯的</span>
-                <!-- <el-divider></el-divider>
-                <span>漫天的我落在枫叶的雪花上</span> -->
               </div>
-            </el-card>
-          </el-main>
+            </el-card> -->
+          <!-- </el-main> -->
         </el-container>
       </el-container>
     </el-container>
@@ -227,20 +197,16 @@
         input3: '',
         input4: '',
         input5: '',
-        // input6: '',
-        // input7: '',
-        // input8: '',
-        // input9: '',
         circleUrl:
-          'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-        sizeList: ['large'],
-        tableData: [
-          {
-            date: '2016-05-03',
-            name1: 'Wechat',
-            name2: 'Github',
-          },
-        ],
+          'https://s2.loli.net/2022/11/26/BI5JgMPwd2ujfD1.jpg',
+        // sizeList: ['large'],
+        // tableData: [
+        //   {
+        //     date: '2022-05-03',
+        //     name1: 'Wechat',
+        //     name2: 'Github',
+        //   },
+        // ],
       }
     },
     methods: {
@@ -262,10 +228,17 @@
   .el-aside {
     line-height: 44px;
     text-align: center;
+
     background-color: #d3dce6;
+    height: 100%;
+    overflow: auto;
+    margin: 60px 35%;
+    position: absolute;
+
+top: 0; left: 0; bottom: 0; right: 0;
   }
   .el-main {
-    line-height: 36px;
+    line-height: 360px;
     text-align: center;
     background-color: #e9eef3;
   }
