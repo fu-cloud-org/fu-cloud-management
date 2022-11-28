@@ -7,7 +7,9 @@
     style="width:100%;border-radius: 12px"
     highlight-current-row
     @sort-change="tableSortChange"
+    @selection-change="tableSelectionChange"
     >
+      <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column width="250" sortable label="Title">
         <template #default="scope">
             <el-input
@@ -321,7 +323,10 @@
         },
         tableSortChange(column,prop,order){
             this.currentTableSort  =  column.order
-            console.log(this.currentTableSort)
+            //console.log(this.currentTableSort)
+        },
+        tableSelectionChange(itemlist){
+            console.log(itemlist)
         }
     },
     computed:{
@@ -335,7 +340,7 @@
                 })
             }
             else{
-                console.log('xxx')
+                //console.log('xxx')
                 return tempfilterdata.sort((a,b)=>{
                     return a.title.localeCompare(b.title)
                 }).reverse()
