@@ -182,7 +182,7 @@
           number: '001',
             name: '王小虎',
             sex: '男',
-            date: '2016-05-02',
+            date: '2002-05-02',
             idnumber: '350181xxxxxxxxxxxx',
             marry: '否',
             belong:'汉族',
@@ -191,6 +191,7 @@
         }
       }
     }
+    
   </script>
   
 
