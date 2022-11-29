@@ -48,14 +48,15 @@ export const constantRoutes = [
     component: Layout, //src/views/
     children: [
       {
-        path: "dashboard/index",
-        name: "dashboard",
-        component: () => import("@/views/dashboard/admin/index"),
+        path: "",
+        name: "",
+        component: () => import("@/views/home/index"),
         meta: { title: "首页", icon: "el-icon-s-home" },
         //icon：图标
       },
     ],
-
+  },
+    {
     path: "/",
     component: Layout, //src/views/
     children: [
