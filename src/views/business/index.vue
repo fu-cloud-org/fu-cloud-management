@@ -6,8 +6,11 @@
     stripe 
     style="width:100%;border-radius: 12px"
     highlight-current-row
+    ref="textDOCRef"
     @sort-change="tableSortChange"
     @selection-change="tableSelectionChange"
+    @row-click="textRowClick"
+    @select-all="selectAll"
     >
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column width="250" sortable label="Title">
@@ -84,7 +87,8 @@
     </el-table>
     <!--分页组件-->
     <el-row style="margin-top:25px;margin-bottom:10px">
-        <el-col :span="12" :offset="12">
+        <el-col :span="2"><el-button type="primary" @click="clearSelection">ClearSelection</el-button></el-col>
+        <el-col :span="12" :offset="10">
             <el-pagination
             style="width:100%"
             :current-page="currentPage"
@@ -132,6 +136,8 @@
   export default{
     data(){
        return {
+        isSelectAll:false,
+        selectList:[],
         currentTableSort:"descending",
         currentPage:1,
         pageSize:7,
@@ -315,18 +321,43 @@
             }
         },
         handCurrentPageChange(val){
-            this.currentPage=val
+            this.currentPage=val;
+            if(this.isSelectAll){
+                this.$refs.textDOCRef.clearSelection();
+                this.$refs.textDOCRef.toggleAllSelection();
+            }
         },
         handPageSizeChange(val){
             this.pageSize=val;
             this.currentPage=1;
+            if(this.isSelectAll){
+                this.$refs.textDOCRef.clearSelection();
+                this.$refs.textDOCRef.toggleAllSelection();
+            }
         },
         tableSortChange(column,prop,order){
             this.currentTableSort  =  column.order
             //console.log(this.currentTableSort)
         },
         tableSelectionChange(itemlist){
-            console.log(itemlist)
+            this.selectList=itemlist;
+            console.log(itemlist.length)
+        },
+        textRowClick(row){
+            console.log(row)
+            this.$refs.textDOCRef.toggleRowSelection(row);
+        },
+        clearSelection(){
+            this.$refs.textDOCRef.clearSelection()
+            this.isSelectAll=false;
+        },
+        selectAll(selection){
+            if(selection.length>0){
+                this.isSelectAll=true;
+            }
+            else{
+                this.isSelectAll=false;
+            }
         }
     },
     computed:{
