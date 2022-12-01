@@ -51,16 +51,16 @@ const lineChartData = {
     actualData: [120, 82, 91, 154, 162, 140, 145]
   },
   messages: {
-    expectedData: [200, 192, 120, 144, 160, 130, 140],
-    actualData: [180, 160, 151, 106, 145, 150, 130]
+    expectedData: [8, 9, 10, 9, 11, 13, 15],
+    actualData: [7, 10, 8, 8, 10, 12, 13]
   },
   purchases: {
-    expectedData: [80, 100, 121, 104, 105, 90, 100],
-    actualData: [120, 90, 100, 138, 142, 130, 130]
+    expectedData: [15, 20, 25, 28, 26, 24, 22],
+    actualData: [10, 24, 15, 16, 19, 22, 20]
   },
   shoppings: {
-    expectedData: [130, 140, 141, 142, 145, 150, 160],
-    actualData: [120, 82, 91, 154, 162, 140, 130]
+    expectedData: [7, 8, 9, 12, 14, 15, 13],
+    actualData: [7, 9, 8, 10, 12, 14, 13]
   }
 }
 
