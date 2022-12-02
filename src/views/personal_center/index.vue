@@ -1,6 +1,6 @@
 <template>
   <div class="personalCenter">
-    <el-container>
+    <el-container class = "bck">
       <el-header>个人中心</el-header>
       <el-container>
         <el-aside width="400px">
@@ -51,7 +51,7 @@
           </el-button-group>
         </el-aside>
         <el-container>
-          <!-- <el-main> -->
+          <el-main>
             <!-- <el-card class="box-card">
               <div slot="header" class="clearfix">
                 <span style="float: left"><b>绑定信息</b></span>
@@ -180,7 +180,7 @@
                 <span>大学生哪有不发疯的</span>
               </div>
             </el-card> -->
-          <!-- </el-main> -->
+          </el-main>
         </el-container>
       </el-container>
     </el-container>
@@ -237,10 +237,19 @@
 
 top: 0; left: 0; bottom: 0; right: 0;
   }
+  .bck{
+    background-color: #e9eef3;
+  }
   .el-main {
-    line-height: 360px;
+    /* line-height: 360px; */
     text-align: center;
     background-color: #e9eef3;
+    /* overflow: auto; */
+    height: 100%;
+    position: absolute;
+    width:100%;
+    background-size:cover;
+    z-index:-1;
   }
 
   .demo-basic--circle {
