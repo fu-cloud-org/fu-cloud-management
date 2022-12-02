@@ -94,7 +94,7 @@
       </el-table-column>
       <el-table-column
         prop="marry"
-        label="婚姻状况"
+        label="是否注册"
         width="120">
       
       </el-table-column>
@@ -197,5 +197,11 @@
     
   </script>
   
+
+  
+
+
+
+
 
   
