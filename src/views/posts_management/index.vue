@@ -38,13 +38,11 @@
       </el-form-item>
     </el-form>
 
-    <el-table 
-    :data="
-            tableData.slice(
-              (currentPage - 1) * pageSize,
-              currentPage * pageSize
-            )
-          ">
+    <el-table
+      :data="
+        tableData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+      "
+    >
       <el-table-column type="index" width="50"> </el-table-column>
       <el-table-column label="标题" align="center" prop="configId" />
       <el-table-column label="标签" align="center" prop="configName" />
@@ -152,74 +150,46 @@ export default {
       total: 10,
       tableData: [
         {
-          configId: "今天也是元气满满的一天呢",
-          configName: "洗了蒜了",
-          configKey: "2022-11-23",
-          configValue: "啊啊啊啊啊！",
-          configType: 1234567,
+          configId: "硫没有正七价",
+          configName: "福云 软件工程",
+          configKey: "2022/12/11",
+          configValue: "noneasp",
+          configType: 22,
         },
         {
-          configId: "这个男人叫小帅",
-          configName: "这个女人叫小美",
-          configKey: "2022-11-23",
-          configValue: "健康马",
-          configType: 7234567,
+          configId: "The end.",
+          configName: "",
+          configKey: "2022/12/11",
+          configValue: "Yeyeahl",
+          configType: 10,
         },
         {
-          configId: "云上楼台望人间",
-          configName: "不知人间苦难多",
-          configKey: "2022-11-23",
-          configValue: "今夜没喝醉",
-          configType: 1234567,
+          configId: "期末期末-复习复习",
+          configName: "期末 加入摆烂 继续摆烂",
+          configKey: "2022/12/11",
+          configValue: "xzy",
+          configType: 12,
         },
         {
-          configId: "云上楼台望人间",
-          configName: "不知人间苦难多",
-          configKey: "2022-11-23",
-          configValue: "今夜没喝醉",
-          configType: 1234567,
+          configId: "121121121",
+          configName: "",
+          configKey: "2022/12/11",
+          configValue: "cyj",
+          configType: 12,
         },
         {
-          configId: "云上楼台望人间",
-          configName: "不知人间苦难多",
-          configKey: "2022-11-23",
-          configValue: "今夜没喝醉",
-          configType: 1234567,
+          configId: "2022秋软工实践-福云web",
+          configName: "",
+          configKey: "2022/12/13",
+          configValue: "atten",
+          configType: 5,
         },
         {
-          configId: "云上楼台望人间",
-          configName: "不知人间苦难多",
-          configKey: "2022-11-23",
-          configValue: "今夜没喝醉",
-          configType: 1234567,
-        },
-        {
-          configId: "云上楼台望人间",
-          configName: "不知人间苦难多",
-          configKey: "2022-11-23",
-          configValue: "今夜没喝醉",
-          configType: 1234567,
-        },
-        {
-          configId: "云上楼台望人间",
-          configName: "不知人间苦难多",
-          configKey: "2022-11-23",
-          configValue: "今夜没喝醉",
-          configType: 1234567,
-        },
-        {
-          configId: "云上楼台望人间",
-          configName: "不知人间苦难多",
-          configKey: "2022-11-23",
-          configValue: "今夜没喝醉",
-          configType: 1234567,
-        },
-        {
-          configId: "云上楼台望人间",
-          configName: "不知人间苦难多",
-          configKey: "2022-11-23",
-          configValue: "今夜没喝醉",
-          configType: 1234567,
+          configId: "111222333",
+          configName: "期末周",
+          configKey: "2022/12/23",
+          configValue: "zjzj",
+          configType: 4,
         },
       ],
     };
