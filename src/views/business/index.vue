@@ -321,7 +321,6 @@
         },
         tableSelectionChange(itemlist){
             this.selectList=itemlist;
-            console.log(itemlist.length)
         },
         textRowClick(row){
             console.log(row)
@@ -331,12 +330,13 @@
             this.$refs.textDOCRef.clearSelection()
             this.isSelectAll=false;
         },
-        selectAll(selection){
-            if(selection.length>0){
-                this.isSelectAll=true;
+        selectAll(){
+            this.isSelectAll = !this.isSelectAll
+            if(this.isSelectAll){
+                this.$refs.textDOCRef.toggleAllSelection()
             }
             else{
-                this.isSelectAll=false;
+                this.$refs.textDOCRef.clearSelection()
             }
         }
     },

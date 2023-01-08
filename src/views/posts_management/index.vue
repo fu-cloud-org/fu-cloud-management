@@ -38,13 +38,11 @@
       </el-form-item>
     </el-form>
 
-    <el-table 
-    :data="
-            tableData.slice(
-              (currentPage - 1) * pageSize,
-              currentPage * pageSize
-            )
-          ">
+    <el-table
+      :data="
+        tableData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+      "
+    >
       <el-table-column type="index" width="50"> </el-table-column>
       <el-table-column label="标题" align="center" prop="configId" />
       <el-table-column label="标签" align="center" prop="configName" />
